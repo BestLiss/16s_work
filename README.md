@@ -19,7 +19,11 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 #### 五、处理注释文件otus_all.sintax \
 1. 去除空行 \
 `awk '{if($2!="") print $0}' otus_all.sintax > handle/trim.txt`
-1. 获取所有鉴定到g的注释行
-`awk '/g:/&&!/s:/' handle/trim.txt > handle/g/g.txt` \
-2. 
+1. 获取所有鉴定到g的注释行 \
+`awk '/g:/&&!/s:/' handle/trim.txt > handle/g/g.txt` 
+2. 获取g.txt中第一行和第四列并将'\t'替换为',' \
+`awk -F '\t' -v n=2 '{print $1,$4}'  handle/g/g.txt >  handle/g/g_1_4.txt` \
+`awk '/g:/' handle/g/g_1_4.txt > handle/g/g_1_4+.txt`
+`sed -i 's/\s/,/g' handle/g/g_1_4+.txt`
+
 
