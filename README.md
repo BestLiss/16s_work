@@ -45,7 +45,7 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 `config.threads=进程数  congfig.divide_count=id.txt总行数%40  config.work_path=程序所在的目录`
 5. 在handle/g/ 下创建select目录，在handle/g/select/ 下创建sub目录（用于存放输出文件），并将config.py,run.py,select_fasta_by_linux_[i].py(i=0~40)放入select目录,再把silva_re.fa放入handle的上一层目录。
 6. 开始序列统一化
-`python run.py`
+`python handle/g/select/run.py`
 7. 合并序列统一化结果
 `cat handle/g/select/sub/*.txt > handle/g/unified.fa`
 #### 七、生成特征表
@@ -55,4 +55,10 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 2. 生成id.txt,tax.txt文件
 `awk -F '\t' -v n=1 '{print $1}'  handle/g/otu/tax_sig+.txt >  handle/g/otu/id.txt` \
 `awk -F '\t' -v n=1 '{print $2}'  handle/g/otu/tax_sig+.txt >  handle/g/otu/tax.txt`
+3. 从re_silva.fa中挑选出与tax.txt相同注释名的序列得到otus.fa
+`python handle/g/otu/select_sig_otu.py`
+4. 使用vsearch生成特征表:
+`vsearch --usearch_global handle/g/filtered.fa --db handle/g/otu/otus.fa --otutabout handle/g/otu/otutab.txt --id 0.97 --threads 15`
+5. 生成标准格式的otus.sintax,用于后续分析
+`python handle/g/otu/restore_otus_sintax.py`
 
