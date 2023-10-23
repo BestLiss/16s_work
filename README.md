@@ -19,11 +19,26 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 #### 五、处理注释文件otus_all.sintax \
 1. 去除空行 \
 `awk '{if($2!="") print $0}' otus_all.sintax > handle/trim.txt`
-1. 获取所有鉴定到g的注释行 \
-`awk '/g:/&&!/s:/' handle/trim.txt > handle/g/g.txt` 
-2. 获取g.txt中第一行和第四列并将'\t'替换为',' \
-`awk -F '\t' -v n=2 '{print $1,$4}'  handle/g/g.txt >  handle/g/g_1_4.txt` \
-`awk '/g:/' handle/g/g_1_4.txt > handle/g/g_1_4+.txt`
-`sed -i 's/\s/,/g' handle/g/g_1_4+.txt`
+2. 获取所有鉴定到g的注释行,输出第一列和第四列并将'\t'替换为',' \
+`awk '/g:/&&!/s:/' handle/trim.txt > handle/g/g.txt`  \
+`awk -F '\t' -v n=2 '{print $1,$4}'  handle/g/g.txt > handle/g/g_1_4.txt` \
+`awk '/g:/' handle/g/g_1_4.txt > handle/g/g_1_4+.txt` \
+`sed -i 's/\s/,/g' handle/g/g_1_4+.txt` \
+3. 获得所有鉴定到s的注释行并去除s列 \
+`awk '/s:/' handle/trim.txt > handle/s/s.txt` \
+`awk -v n=2 '{print $1,$4}'  handle/s/s.txt >  handle/s/s_1_4.txt` \
+`awk '/s:/' handle/s/s_1_4.txt > handle/s/s_1_4+.txt` \
+`sed -i 's/\s/,/g' handle/s/s_1_4+.txt` \
+`awk -F ',' -v n=6 '{print $1,$2,$3,$4,$5,$6}'  handle/s/s_1_4+.txt >  handle/s/s_1_4_delete_s.txt`
+`sed -i 's/\s/,/g' handle/s/s_1_4_delete_s.txt` \
+4. 合并被鉴定到s去除了s的注释 \
+`cat handle/g/g_1_4+.txt handle/s/s_1_4_delete_s.txt > all_g.txt`
+#### 六、序列统一化 \
+1. 生成序列id
+`awk -F ',' -v n=1 '{print $1}'  all_g.txt >  handle/g/id.txt`
+2. 生成序列的注释文件
+`awk -F ',' -v n=6 '{print $2,$3,$4,$5,$6,$7}'  all_g.txt >  handle/g/tax.txt` \
+`sed -i 's/\s/,/g' handle/g/tax.txt`
+
 
 
