@@ -14,7 +14,7 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 1. 创建conda环境:vsearch 安装并激活\
 `conda creat -n vsearch -y python=2.7` \
 `conda activate vsearch`
-2. 使用vsearch进行物种注释,分类水平可信度大于0.6
+2. 使用vsearch进行物种注释,分类水平可信度大于0.6 \
 `vsearch --sintax ASV.fa --db  ./rdp_16s_v16.fa --tabbedout ./otus_all.sintax --sintax_cutoff 0.6 `
 #### 五、处理注释文件otus_all.sintax 
 1. 去除空行 \
