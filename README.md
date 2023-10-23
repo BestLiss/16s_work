@@ -39,6 +39,10 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 2. 生成序列的注释文件 \
 `awk -F ',' -v n=6 '{print $2,$3,$4,$5,$6,$7}'  all_g.txt >  handle/g/tax.txt` \
 `sed -i 's/\s/,/g' handle/g/tax.txt`
-
+3. 查看id.txt总行数
+`wc -l handle/g/id.txt`
+4. 设置find_g_fa/config.py
+`config.threads=进程数  congfig.divide_count=id.txt总行数%40  config.work_path=程序所在的目录`
+5. 
 
 
