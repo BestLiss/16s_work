@@ -43,7 +43,7 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 `wc -l handle/g/id.txt`
 4. 设置find_g_fa/config.py
 `config.threads=进程数  congfig.divide_count=id.txt总行数%40  config.work_path=程序所在的目录`
-5. 在handle/g/ 下创建select目录，在handle/g/select/ 下创建sub目录（用于存放输出文件），并将config.py,run.py,select_fasta_by_linux_[i].py(i=0~40)放入select目录,在把silva_re.fa放入handle的上一层目录。
+5. 在handle/g/ 下创建select目录，在handle/g/select/ 下创建sub目录（用于存放输出文件），并将config.py,run.py,select_fasta_by_linux_[i].py(i=0~40)放入select目录,再把silva_re.fa放入handle的上一层目录。
 6. 开始序列统一化
 `python run.py`
 7. 合并序列统一化结果
