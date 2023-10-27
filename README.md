@@ -33,11 +33,13 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 `sed -i 's/\s/,/g' handle/s/s_1_4_delete_s.txt` 
 4. 合并被鉴定到s去除了s的注释 \
 `cat handle/g/g_1_4+.txt handle/s/s_1_4_delete_s.txt > all_g.txt`
+5. 将相同的注释排成相邻行
+`sort -k1 -t\t all_g.txt > handle/sort.txt`
 #### 六、序列统一化 \
 1. 生成序列id \
-`awk -F ',' -v n=1 '{print $1}'  all_g.txt >  handle/g/id.txt`
+`awk -F ',' -v n=1 '{print $1}'  handle/all_g.txt >  handle/g/id.txt`
 2. 生成序列的注释文件 \
-`awk -F ',' -v n=6 '{print $2,$3,$4,$5,$6,$7}'  all_g.txt >  handle/g/tax.txt` \
+`awk -F ',' -v n=6 '{print $2,$3,$4,$5,$6,$7}'  handle/all_g.txt >  handle/g/tax.txt` \
 `sed -i 's/\s/,/g' handle/g/tax.txt`
 3. 查看id.txt总行数
 `wc -l handle/g/id.txt`
