@@ -1,11 +1,18 @@
 # 16s_unifiy
 Identification of intestinal microbiota  biomarkers in centenarians based on machine learning
-#### 一、 从NCBI下载样本fasta格式文件后解压
-#### 二、 对数据重新编号并合并成一个文件
-1. 在代码执行目录创建re_id/input文件夹,并将待处理的文件放入re_id/input 
-2. python执行single_re_id_i.py 
-3. 将会在re_id/otuput目录下输出结果 
-4. cat re_id/otuput/*.fa > ASV.fa
+#### 一、 从NCBI下载样本fasta格式文件或在ENA下载fastq格式文件后解压
+
+#### 二（可选）、 双端合并（NCBI的fasta文件双端序列都在一个文件中，若从ENA上下载的fastq格式文件请执行此步骤）
+1. 在代码执行目录创建merge/input和merge/output文件夹,并将待处理的文件放入merge/input 
+2. python执行merge_fa_at_one_file.py
+3. 将会在merge/otuput目录下输出结果 
+4. cat merge/otuput/*.fa > ASV.fa
+#### 二（可选）、合并ENA双端fastq数据文件（若从ENA上下载的fastq格式文件请执行此步骤）
+1. 在代码执行目录创建toFasta/input、merge/input、merge/output文件夹，将metadata.CSV（第一列为样本编号）放入代码执行目录,并将待处理的文件放入toFasta/input
+2. 运行fastq_to_fasta.py
+3. 将会在merge/input生成文件fasta文件
+4. 运行merge_fa_at_two_file.py
+5. 将会在merge/output生成合并完成的文件
 #### 三、 格式化silva_16s_v123
 1. [下载silva数据库:https://www.drive5.com/usearch/manual/sintax_downloads.html](https://www.drive5.com/usearch/manual/sintax_downloads.html)
 2. 在代码执行目录创建re_silva/input文件夹,并将silva_16s_v123.fa放入re_silva/input \
