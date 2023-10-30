@@ -13,6 +13,7 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 3. 将会在merge/input生成文件fasta文件
 4. 运行merge_fa_at_two_file.py
 5. 将会在merge/output生成合并完成的文件
+6. cat merge/otuput/*.fa > ASV.fa
 #### 三、 格式化silva_16s_v123
 1. [下载silva数据库:https://www.drive5.com/usearch/manual/sintax_downloads.html](https://www.drive5.com/usearch/manual/sintax_downloads.html)
 2. 在代码执行目录创建re_silva/input文件夹,并将silva_16s_v123.fa放入re_silva/input \
