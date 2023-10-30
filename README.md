@@ -2,7 +2,7 @@
 Identification of intestinal microbiota  biomarkers in centenarians based on machine learning
 #### 一、 从NCBI下载样本fasta格式文件或在ENA下载fastq格式文件后解压
 
-#### 二（可选）、 双端合并（NCBI的fasta文件双端序列都在一个文件中，若从ENA上下载的fastq格式文件请执行此步骤）
+#### 二（可选）、 双端合并（NCBI的fasta文件双端序列都在一个文件中，若从NCBI上下载的fasta格式文件请执行此步骤）
 1. 在代码执行目录创建merge/input和merge/output文件夹,并将待处理的文件放入merge/input 
 2. python执行merge_fa_at_one_file.py
 3. 将会在merge/otuput目录下输出结果 
