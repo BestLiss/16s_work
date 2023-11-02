@@ -3,7 +3,7 @@
 
 id_path = './id.txt'
 
-database_path = "../all.sintax"
+database_path = "../../trim.txt"
 
 count = 1
 sample_count = 1
