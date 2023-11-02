@@ -42,7 +42,7 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 4. 合并被鉴定到s去除了s的注释 \
 `cat handle/g/g_1_4+.txt handle/s/s_1_4_delete_s.txt > all_g.txt`
 5. 将相同的注释排成相邻行
-`sort -k1 -t\t all_g.txt > handle/sort.txt`
+`sort -k2 -t\t all_g.txt > handle/sort.txt`
 #### 六、序列统一化 \
 1. 生成序列id \
 `awk -F ',' -v n=1 '{print $1}'  handle/all_g.txt >  handle/g/id.txt`
