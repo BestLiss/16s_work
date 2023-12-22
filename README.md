@@ -49,10 +49,10 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 #### 七、生成特征表
 1. 对物种注释表去冗余：在handle/g/ 下创建otu目录 \
 `paste handle/g/id.txt handle/g/tax.txt > handle/g/temp.txt` \
-`sort -t\t -k2 -u handle/g/temp.txt  > handle/g/otu/uni_sintax.txt`
+`sort -t\t -k2 -u handle/g/temp.txt  > handle/g/otu/uni.sintax`
 2. 生成id.txt,tax.txt文件
-`awk -F '\t' -v n=1 '{print $1}'  handle/g/otu/uni_sintax.txt >  handle/g/otu/id.txt` \
-`awk -F '\t' -v n=1 '{print $2}'  handle/g/otu/uni_sintax.txt >  handle/g/otu/tax.txt`
+`awk -F '\t' -v n=1 '{print $1}'  handle/g/otu/uni.sintax >  handle/g/otu/id.txt` \
+`awk -F '\t' -v n=1 '{print $2}'  handle/g/otu/uni.sintax >  handle/g/otu/tax.txt`
 3. 从re_silva.fa中挑选出与tax.txt相同注释名的序列得到otus.fa(将当前目录cd到handle/g/select/otu目录) \
 `python select_sig_otu.py`
 4. 使用vsearch生成特征表: \
