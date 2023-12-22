@@ -47,7 +47,7 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 5. 合并序列统一化结果
 `cat handle/g/select/sub/*.txt > handle/g/all_unified.fa`
 #### 七、生成特征表
-1. 对物种注释表去冗余：在handle/g/ 下创建otu目录
+1. 对物种注释表去冗余：在handle/g/ 下创建otu目录 \
 `paste handle/g/id.txt handle/g/tax.txt > handle/g/temp.txt` \
 `sort -t\t -k2 -u handle/g/temp.txt  > handle/g/otu/uni_sintax.txt`
 2. 生成id.txt,tax.txt文件
