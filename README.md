@@ -21,9 +21,11 @@ Identification of intestinal microbiota  biomarkers in centenarians based on mac
 #### 四、 使用vsearch鉴定物种
 1. 创建conda环境:vsearch 安装并激活\
 `conda creat -n vsearch -y python=2.7` \
-`conda activate vsearch`
-2. 使用vsearch进行物种注释,分类水平可信度大于0.6 \
-`vsearch --sintax ASV.fa --db  ./rdp_16s_v16.fa --tabbedout ./otus_all.sintax --sintax_cutoff 0.6 `
+`conda activate vsearch` \
+2. 去嵌合 \
+ `./usearch -uchime2_ref ASV.fa -db /re_silva/input/silva_16s_v123.fa  -chimeras otus_chimeras.fa -notmatched filtered.fa -uchimeout otus_rdp.uchime -strand plus -mode sensitive -threads 50`  
+3. 使用vsearch进行物种注释,分类水平可信度大于0.6 \
+`vsearch --sintax filtered.fa --db /re_silva/input/silva_16s_v123.fa --tabbedout ./otus_all.sintax --sintax_cutoff 0.6 `
 #### 五、处理注释文件otus_all.sintax 
 1. 去除空行并输出关键信息行 \
 `awk '{if($2!="") print $0}' otus_all.sintax > handle/trim.txt` \
